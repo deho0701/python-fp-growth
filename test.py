@@ -6,7 +6,7 @@ Testing code for the FP-growth implementation.
 
 import unittest
 import fp_growth
-from itertools import izip
+#from itertools import izip
 
 class NodeTester(object):
     def __init__(self, case, node):
@@ -45,9 +45,9 @@ class TreeTestCase(unittest.TestCase):
         actual = list(actual)
         self.assertEqual(len(expected), len(actual))
 
-        for items, path in izip(expected, actual):
+        for items, path in zip(expected, actual):
             self.assertEqual(len(items), len(path))
-            for item, node in izip(items, path):
+            for item, node in zip(items, path):
                 self.assertEqual(item, node.item)
 
 
@@ -164,8 +164,9 @@ class FrequentSetTests(unittest.TestCase):
         transactions = [line.split(',') for line in raw.split(';')]
 
         itemsets = list(fp_growth.find_frequent_itemsets(transactions, 2))
-        self.assertEqual([['25'], ['52', '25'], ['274'], ['71'], ['52']],
+        self.assertEqual([['52'], ['274'], ['25'], ['52', '25'], ['71']],
             itemsets)
 
 if __name__ == '__main__':
     unittest.main()
+    
